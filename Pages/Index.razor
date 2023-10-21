@@ -6,28 +6,50 @@
 <div class="container text-center">
     <div class="row" style="height: 10em">
         <div class="col col-7">
-            <Callout Heading="Main Data">
-                <BarChartComponent />
-            </Callout>
+            @GetAt(0)
         </div>
         <div class="col col-5">
-            <Callout Heading="Operating System" Type="CalloutType.Info">
-                <StackBarChartComponent />
-            </Callout>
+            @GetAt(1)
         </div>
-        <div class="clearfix"/>
+        <div class="clearfix" />
         <div class="col col-4">
-            <Callout Heading="2023 Sales" Type="CalloutType.Tip">
-                <DoughnutChartComponent />
-            </Callout>
+            @GetAt(2)
         </div>
         <div class="col col-8">
-            <Callout Heading="Servers Load" Type="CalloutType.Warning">
-                <LineChartComponent />
-            </Callout>
+            @GetAt(3)
         </div>
     </div>
 </div>
 
+@code {
+    int[] pos = { 0, 1, 2, 3 };
+
+    private RenderFragment GetAt(int posNum) => __builder => {
+        int type = pos[posNum];
+
+        switch (type) {
+            case 0:
+                <Callout Heading='Main Data'>
+                    <BarChartComponent />
+                </Callout>
+                break;
+            case 1:
+                <Callout Heading="Operating System" Type="CalloutType.Info">
+                    <StackBarChartComponent />
+                </Callout>
+                break;
+            case 2:
+                <Callout Heading="2023 Sales" Type="CalloutType.Tip">
+                    <DoughnutChartComponent />
+                </Callout>
+                break;
+            case 3:
+                <Callout Heading="Servers Load" Type="CalloutType.Warning">
+                    <LineChartComponent />
+                </Callout>
+                break;
+        }
+    };
+}
 
 
