@@ -1,4 +1,4 @@
-﻿<LineChart @ref="lineChart" Class="mb-4" />
+﻿<LineChart @ref="lineChart" Class="mb-0" />
 
 <Button Type="ButtonType.Button" Color="ButtonColor.Primary" Size="Size.Small" @onclick="async () => await RandomizeAsync()"> Randomize </Button>
 <Button Type="ButtonType.Button" Color="ButtonColor.Primary" Size="Size.Small" @onclick="async () => await AddDatasetAsync()"> Add Dataset </Button>
@@ -112,7 +112,7 @@
 
         return new LineChartDataset
             {
-                Label = $"Team {datasetsCount}",
+                Label = $"Server {datasetsCount}",
                 Data = GetRandomData(),
                 BackgroundColor = new List<string> { c.ToRgbString() },
                 BorderColor = new List<string> { c.ToRgbString() },

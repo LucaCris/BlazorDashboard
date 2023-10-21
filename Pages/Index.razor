@@ -3,8 +3,14 @@
 
 <PageTitle>Index</PageTitle>
 
-<div class="container text-center">
-    <div class="row" style="height: 10em">
+<div style="position: absolute;top:0.5em;z-index:1000">
+    <Button Color="ButtonColor.Success" @onclick="Swap">Shift positions</Button>
+    <Button Color="ButtonColor.Success" @onclick="Rand">Random charts</Button>
+    <Button Color="ButtonColor.Success" @onclick="Reset">Reset all</Button>
+</div>
+
+<div class="container text-center bg-light bg-gradient px-3 mb-5 shadow">
+    <div class="row">
         <div class="col col-7">
             @GetAt(0)
         </div>
@@ -50,6 +56,27 @@
                 break;
         }
     };
+
+    void Swap()
+    {
+        int p0 = pos[0];
+        Array.Copy(pos, 1, pos, 0, pos.Length - 1);
+        pos[pos.Length - 1] = p0;
+    }
+
+    void Rand()
+    {
+        var rnd = new Random();
+        int l = pos.Length;
+        for (int i = 0; i < l; i++)
+            pos[i] = rnd.Next(l);
+    }
+
+    void Reset()
+    {
+        for (int i = 0; i < pos.Length; i++)
+            pos[i] = i;
+    }
 }
 
 
