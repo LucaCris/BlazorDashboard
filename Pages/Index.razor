@@ -1,0 +1,33 @@
+﻿@page "/"
+@using Charts.Components
+
+<PageTitle>Index</PageTitle>
+
+<div class="container text-center">
+    <div class="row" style="height: 10em">
+        <div class="col col-7">
+            <Callout Heading="Main Data">
+                <BarChartComponent />
+            </Callout>
+        </div>
+        <div class="col col-5">
+            <Callout Heading="Operating System" Type="CalloutType.Info">
+                <StackBarChartComponent />
+            </Callout>
+        </div>
+        <div class="clearfix"/>
+        <div class="col col-4">
+            <Callout Heading="2023 Sales" Type="CalloutType.Tip">
+                <DoughnutChartComponent />
+            </Callout>
+        </div>
+        <div class="col col-8">
+            <Callout Heading="Servers Load" Type="CalloutType.Warning">
+                <LineChartComponent />
+            </Callout>
+        </div>
+    </div>
+</div>
+
+
+
