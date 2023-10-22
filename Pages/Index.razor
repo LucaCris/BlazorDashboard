@@ -1,10 +1,11 @@
 ﻿@page "/"
 @using Charts.Components
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Dashboard</PageTitle>
 
+<!-- Quick toolbar trick -->
 <div style="position: absolute;top:0.5em;z-index:1000">
-    <Button Color="ButtonColor.Success" @onclick="Swap">Shift positions</Button>
+    <Button Color="ButtonColor.Success" @onclick="Shift">Shift positions</Button>
     <Button Color="ButtonColor.Success" @onclick="Rand">Random charts</Button>
     <Button Color="ButtonColor.Success" @onclick="Reset">Reset all</Button>
 </div>
@@ -28,10 +29,10 @@
 </div>
 
 @code {
-    int[] pos = { 0, 1, 2, 3 };
+    int[] CellsContent = Enumerable.Range(0, 4).ToArray();
 
     private RenderFragment GetAt(int posNum) => __builder => {
-        int type = pos[posNum];
+        int type = CellsContent[posNum];
 
         switch (type) {
             case 0:
@@ -57,26 +58,23 @@
         }
     };
 
-    void Swap()
+    void Shift()
     {
-        int p0 = pos[0];
-        Array.Copy(pos, 1, pos, 0, pos.Length - 1);
-        pos[pos.Length - 1] = p0;
+        int p0 = CellsContent[0];
+        Array.Copy(CellsContent, 1, CellsContent, 0, CellsContent.Length - 1);
+        CellsContent[CellsContent.Length - 1] = p0;
     }
 
     void Rand()
     {
         var rnd = new Random();
-        int l = pos.Length;
+        int l = CellsContent.Length;
         for (int i = 0; i < l; i++)
-            pos[i] = rnd.Next(l);
+            CellsContent[i] = rnd.Next(l);
     }
 
     void Reset()
     {
-        for (int i = 0; i < pos.Length; i++)
-            pos[i] = i;
+        CellsContent = Enumerable.Range(0, 4).ToArray();
     }
 }
-
-
